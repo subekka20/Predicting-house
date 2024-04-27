@@ -1,0 +1,144 @@
+<!-- filtered_page.html -->
+<html>
+<head>
+<style>
+    .card {
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        padding: 10px;
+        margin: 10px;
+        margin-left: 40px;
+        width: 300px;
+        cursor: pointer;
+    }
+
+    .card img {
+        max-width: 300px;
+        height: 250px;
+        
+    }
+    body {
+        margin: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f2f2f2;
+    }
+
+    .navbar {
+        background-color: #3498db;
+        padding: 10px;
+        color: #fff;
+        display: flex;
+        justify-content: space-between;
+    }
+
+    .logout-btn {
+        background-color: #2980b9;
+        color: #fff;
+        border: none;
+        padding: 8px 16px;
+        cursor: pointer;
+    }
+    .houseList{
+        display: flex;
+        height: 100%;
+        width: 100%;
+        flex-wrap: wrap;
+        margin: 0 auto; /* Center the content */
+    }
+    .search-container {
+        float: right;
+        margin-right: 20px;
+    }
+
+    .search-box {
+        padding: 10px;
+        margin: 0;
+        box-sizing: border-box;
+        border-radius: 5px;
+        width: 400px;
+        margin-top: 3px;
+    }
+
+    .search-button {
+        padding: 10px;
+        background-color: #004d5c;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        border-radius: 5px;
+        width: 80px;
+    }
+    .search-button:hover{
+        background-color: #fff;
+        color: #004d5c;
+        width: 100px;
+    }
+    .filter-container {
+        margin: 20px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    .filter-box {
+        margin-bottom: 10px;
+        padding: 10px;
+        box-sizing: border-box;
+        border-radius: 5px;
+    }
+
+    .filter-button {
+        padding: 10px;
+        background-color: #004d5c;
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        width: 100px;
+        border-radius: 5px;
+    }
+
+    a {
+        display: inline-block;
+        padding: 10px;
+        text-decoration: none;
+        color: #333;
+        background-color: #eee;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        margin-right: 10px;
+        width: 80px;
+        align-content: center;
+    }
+
+    /* Style the navigation links on hover */
+    a:hover {
+        background-color: #ddd;
+    }
+</style>
+</head>
+<body>
+    <div class="navbar">
+        <a href="{% url 'home' user_id %}">Home</a>
+        <div class="search-container">
+            <form action="#" method="GET">
+                <input type="text" placeholder="Search" name="q" class="search-box">
+                <button type="submit" class="search-button">Search</button>
+            </form>
+        </div>       
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    <h2>Filtered Houses:</h2>
+
+    <div class="houseList">
+    {% for house in filtered_houses %}
+        <div class="card">
+            <img src="{{ house.image_url }}" alt="{{ house.name }}">
+            <h2>{{ house.name }}</h2>
+            <p>Location: {{ house.location }}</p>
+            <p>Price: {{ house.price }}</p>
+            <p>Description: {{ house.description }}</p>
+        </div>
+    {% endfor %}
+    </div>
+</body>
+</html>

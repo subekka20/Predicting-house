@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Houses</title>
+    <style>
+        .navbar {
+            background-color: #3498db;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logout-btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+        .logout-btn:hover{
+            font-size: large;
+        }
+
+        table {
+            border-collapse: collapse;
+            width: 100%;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ddd;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #3498db;
+            color: white;
+        }
+        .houses-btn{
+            width:200px;
+            height: 50px;
+            background-color: rgb(17, 224, 103);
+            border-radius: 5px;
+            margin-left: 1700px;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span>Admin Dashboard</span>
+        <a href="{% url 'admin_dashboard' %}"><button class="logout-btn" style="margin-left: 1500px;">Home</button></a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+    </div>
+    
+    <h1>Houses</h1>
+    <a href="{% url 'new_house' %}"><button class="houses-btn">Add New</button></a>
+    <table>
+        <thead>
+            <tr>
+                <th>Name</th>
+                <th>Image</th>
+                <th>Price</th>
+                <th>Location</th>
+                <th>Description</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for house in houses %}
+                <tr>
+                    <td>{{ house.name }}</td>
+                    <td><img src="{{ house.image_url }}" alt="{{ house.name }}" style="max-width: 100px; max-height: 100px;"></td>
+                    <td>{{ house.price }}</td>
+                    <td>{{ house.location }}</td>
+                    <td>{{ house.description }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <!-- Add any additional content or buttons here -->
+    <script>
+        function logout() {
+            // Add logic for ending the session and redirecting to the login page
+            window.location.href = "{% url 'login' %}";
+        }
+    </script>
+</body>
+</html>

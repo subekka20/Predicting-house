@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New House</title>
+    <style>
+        .navbar {
+            background-color: #3498db;
+            padding: 10px;
+            color: #fff;
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .logout-btn {
+            background-color: #2980b9;
+            color: #fff;
+            border: none;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        h1 {
+            color: #333;
+        }
+
+        form {
+            max-width: 400px;
+            margin: 20px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        input,
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 16px;
+            box-sizing: border-box;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <span>Admin Dashboard</span>
+        <a href="{% url 'admin_dashboard' %}"><button class="houses-btn">Home</button></a>
+        <button class="logout-btn" onclick="logout()">Logout</button>
+        <a href="{% url 'houses' %}"><button class="houses-btn">Houses</button></a>
+    </div>
+
+    <h1>New House</h1>
+    <form method="post" action="{% url 'new_house' %}">
+        {% csrf_token %}
+        <label for="name">Name:</label>
+        <input type="text" name="name" required><br>
+        <label for="location">Location:</label>
+        <input type="text" name="location" required><br>
+        <label for="price">Price:</label>
+        <input type="text" name="price" required><br>
+        <label for="image_url">Image URL:</label>
+        <input type="text" name="image_url" required><br>
+        <label for="description">Description:</label>
+        <textarea name="description" required></textarea><br>
+        <input type="submit" value="Save">
+    </form>
+    <script>
+        function logout() {
+            // Add logic for ending the session and redirecting to the login page
+            window.location.href = "{% url 'login' %}";
+        }
+    </script>
+</body>
+</html>
